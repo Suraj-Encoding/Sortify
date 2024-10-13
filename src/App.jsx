@@ -18,7 +18,7 @@ class App extends React.Component {
       default: {
         sortingAlgorithm: 'Bubble Sort',
         size: '15',
-        speed: 'Fast',
+        speed: 'Normal',
         barColor: 'Blue',
         pointerColor: 'Red',
         sortedColor: 'Green',
