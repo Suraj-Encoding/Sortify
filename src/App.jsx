@@ -19,8 +19,8 @@ class App extends React.Component {
         sortingAlgorithm: 'Bubble Sort',
         size: '15',
         speed: 'Normal',
-        barColor: 'Blue',
-        pointerColor: 'Red',
+        barColor: 'Black',
+        pointerColor: 'Pink',
         sortedColor: 'Green',
         sort: false,
         randomize: true
@@ -60,11 +60,30 @@ class App extends React.Component {
         <Container fluid>
           <Row><Col><p style={{ color: 'white' }}></p></Col></Row>
           <Row xl={2} lg={2} md={2} sm={1} xs={1}>
-            <Col xl={4} lg={4} md={4}><VisualizerController controllerDataHandler={this.controllerDataHandler} visualizerData={this.state.sorted}>{this.state.sorted}</VisualizerController></Col>
-            <Col id='sortingVisualizer'><SortingVisualizer visualizerDataHandler={this.visualizerDataHandler} controllerData={this.state.default}></SortingVisualizer></Col>
-          </Row>
-          <Row xl={1} lg={1} md={1} sm={1} xs={1}>
-            <Col><h6>Author : Akshat Jain & Ashutosh Gautam</h6></Col>
+            <Col xl={4} lg={4} md={4}>
+              {/* # Visualizer Controller */}
+              <VisualizerController controllerDataHandler={this.controllerDataHandler} visualizerData={this.state.sorted}>{this.state.sorted}
+              </VisualizerController>
+              {/* # Author Name */}
+              <h6 className='mt-3' style={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+                fontFamily: 'cursive',
+                textShadow: '2px 2px 2px rgba(0, 0, 0, 0.2)',
+                letterSpacing: '1px',
+                background: 'linear-gradient(90deg, #d35400, #c0392b, #8e44ad, #2c3e50)',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent'
+              }}>
+                🕸️ Author: Suraj Dalvi 🕸️
+              </h6>
+
+            </Col>
+            {/* # Sorting Visualizer */}
+            <Col id='sortingVisualizer'>
+              <SortingVisualizer visualizerDataHandler={this.visualizerDataHandler} controllerData={this.state.default}>
+              </SortingVisualizer>
+            </Col>
           </Row>
         </Container>
       </div>
