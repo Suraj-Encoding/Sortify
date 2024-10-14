@@ -25,6 +25,7 @@ class SortingVisualizer extends React.Component {
             speed: '',
             barColor: '',
             pointerColor: '',
+            sortedColor: '',
             sort: false,
             randomize: false
         };
@@ -73,15 +74,9 @@ class SortingVisualizer extends React.Component {
                     randomize: controllerData['randomize']
                 }
                 switch (controllerData.sortingAlgorithm) {
-                    case "Cocktail Sort":
+                    case "Linear Sort":
                         this.setState(cd, function () {
-                            this.cocktailSort()
-                        });
-                        break;
-
-                    case "Heap Sort":
-                        this.setState(cd, function () {
-                            this.heapSort()
+                            this.linearSort()
                         });
                         break;
 
@@ -91,15 +86,9 @@ class SortingVisualizer extends React.Component {
                         });
                         break;
 
-                    case "Linear Sort":
+                    case "Selection Sort":
                         this.setState(cd, function () {
-                            this.linearSort()
-                        });
-                        break;
-
-                    case "Merge Sort":
-                        this.setState(cd, function () {
-                            this.mergeSortUtil()
+                            this.selectionSort()
                         });
                         break;
 
@@ -109,9 +98,21 @@ class SortingVisualizer extends React.Component {
                         });
                         break;
 
-                    case "Selection Sort":
+                    case "Merge Sort":
                         this.setState(cd, function () {
-                            this.selectionSort()
+                            this.mergeSortUtil()
+                        });
+                        break;
+
+                    case "Heap Sort":
+                        this.setState(cd, function () {
+                            this.heapSort()
+                        });
+                        break;
+
+                    case "Cocktail Sort":
+                        this.setState(cd, function () {
+                            this.cocktailSort()
                         });
                         break;
 
@@ -697,33 +698,62 @@ class SortingVisualizer extends React.Component {
     // # Get Color
     getColor(barColor) {
         switch (barColor) {
-            case 'Black':
-                return '#000000'
+            case 'Blue':
+                return '#3730a3'
             case 'Cyan':
-                return '#00e6e6'
+                return '#0891b2'
             case 'Green':
-                return '#009933'
+                return '#16a34a'
             case 'Pink':
-                return '#e600e6'
+                return '#db2777'
             case 'Red':
-                return '#cc0000'
+                return '#e11d48'
             case 'Yellow':
-                return '#cccc00'
+                return '#eab308'
             default:
-                return '#000050'
+                return '#1f2937'
         }
+    }
+
+    // # Get Subtract Factor
+    getSubtractFactor() {
+        const size = parseInt(this.state.size);  // # Array Size
+        let factor = 4; // # Subtract Factor 
+        // # Subtract Factor Calculation
+        if (size == 10) {
+            factor += 18;
+        } else if (size == 15) {
+            factor += 12;
+        } else if (size == 20) {
+            factor += 8;
+        } else if (size == 25) {
+            factor += 6;
+        } else if (size == 30) {
+            factor += 4;
+        } else if (size == 35) {
+            factor += 2;
+        } else if (size == 40) {
+            factor += 1;
+        } else {
+            factor += 0;
+        }
+        // # Return Factor
+        return factor;
     }
 
     // # Get Bar Height
     getBarHeight() {
-        let height = ((this.height - 150) - (parseInt(this.state.size) * 5)) / parseInt(this.state.size);
+        const size = parseInt(this.state.size); // # Array Size
+        let height = ((this.height - 150) - (size * 5)) / size;
         return height;
     }
 
     // # Get Font Height
-    getfontHeight() {
-        let fontHeight = ((this.height - 150) - (parseInt(this.state.size) * 5)) / parseInt(this.state.size);
-        return fontHeight - 3;
+    getFontHeight() {
+        const size = parseInt(this.state.size); // # Array Size
+        let fontHeight = ((this.height - 150) - (size * 5)) / size;
+        const factor = this.getSubtractFactor();
+        return (fontHeight - factor);
     }
 
     // # Get Random Element
@@ -746,7 +776,7 @@ class SortingVisualizer extends React.Component {
                                 width: `${value + 10}px`,
                                 backgroundColor: `${this.state.barColor}`,
                                 height: `${this.getBarHeight()}px`,
-                                fontSize: `${this.getfontHeight()}px`
+                                fontSize: `${this.getFontHeight()}px`
                             }
                         }>
                             {value}
@@ -754,6 +784,7 @@ class SortingVisualizer extends React.Component {
                     )
                     )
                 }
+                <br />
             </div>
         )
     }
