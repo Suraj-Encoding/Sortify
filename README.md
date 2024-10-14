@@ -28,11 +28,26 @@ This project demonstrates how different sorting algorithms work by visualizing t
 
 To run this project locally, you need to have Node.js installed on your system. You can download and install Node.js from the [official website](https://nodejs.org).
 
-
-Clone the repository to your local machine:
+- Clone the repository to your local machine:
 
 ```sh
 git clone https://github.com/Suraj-Encoding/Sortify.git
+```
+
+- Install Dependencies:
+```sh
+npm install 
+```
+
+- Run Development Server:
+```sh
+npm run dev 
+```
+Open http://localhost:5173 with your browser to see the result.
+
+- Build Project:
+```sh
+npm run build
 ```
 
 ## Contributions
