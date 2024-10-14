@@ -49,6 +49,7 @@ Open http://localhost:5173 with your browser to see the result.
 ```sh
 npm run build
 ```
+This will create an optimized production build of your project in `dist` folder.
 
 ## Contributions
 
