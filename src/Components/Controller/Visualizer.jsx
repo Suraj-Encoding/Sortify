@@ -18,8 +18,8 @@ class VisualizerController extends Component {
             sortingAlgorithm: 'Bubble Sort',
             speed: 'Normal',
             size: '15',
-            barColor: 'Blue',
-            pointerColor: 'Red',
+            barColor: 'Black',
+            pointerColor: 'Pink',
             sortedColor: 'Green',
             message: '🚀 Feeling Lazy ? Just Click Sort ! 🚀'
         }
@@ -124,6 +124,7 @@ class VisualizerController extends Component {
         let temp = this.update();
         temp['sort'] = false;
         temp['randomize'] = true;
+        temp['sorted'] = false;
         this.setState(temp, function () {
             this.props.controllerDataHandler(this.state)
         });
@@ -142,7 +143,7 @@ class VisualizerController extends Component {
         let temp = this.update();
         temp['sort'] = true;
         temp['randomize'] = false;
-        temp['sorted'] = false;
+        temp['sorted'] = true;
         this.setState(temp, function () {
             this.props.controllerDataHandler(this.state)
         });
@@ -154,9 +155,9 @@ class VisualizerController extends Component {
             <div className='VisualizerController'>
                 <Container>
                     <Row>
-                        <Col><h1>Sorting<br></br>Visualizer</h1></Col>
+                        <Col><h1 className='mt-3'>Sorting Visualizer</h1></Col>
                     </Row>
-                    <Row>
+                    <Row className='mt-3'>
                         <Col>
                             <SplitButton title={this.state.sortingAlgorithm} id='sortingAlogrithm' variant='light' onSelect={this.onSelectingSortingAlgorithm}>
                                 <Dropdown.Item disabled>Sorting Algorithm</Dropdown.Item>
@@ -210,8 +211,8 @@ class VisualizerController extends Component {
                             <SplitButton title={this.state.barColor} id='barColor' variant='light' onSelect={this.onSelectingBarColor}>
                                 <Dropdown.Item disabled>Color of Bar</Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item eventKey='Black'>Black</Dropdown.Item>
-                                <Dropdown.Item eventKey='Blue'>Blue (Default)</Dropdown.Item>
+                                <Dropdown.Item eventKey='Black'>Black (Default)</Dropdown.Item>
+                                <Dropdown.Item eventKey='Blue'>Blue</Dropdown.Item>
                                 <Dropdown.Item eventKey='Cyan'>Cyan</Dropdown.Item>
                                 <Dropdown.Item eventKey='Green'>Green</Dropdown.Item>
                                 <Dropdown.Item eventKey='Pink'>Pink</Dropdown.Item>
@@ -230,8 +231,8 @@ class VisualizerController extends Component {
                                 <Dropdown.Item eventKey='Blue'>Blue</Dropdown.Item>
                                 <Dropdown.Item eventKey='Cyan'>Cyan</Dropdown.Item>
                                 <Dropdown.Item eventKey='Green'>Green</Dropdown.Item>
-                                <Dropdown.Item eventKey='Pink'>Pink</Dropdown.Item>
-                                <Dropdown.Item eventKey='Red'>Red (Default)</Dropdown.Item>
+                                <Dropdown.Item eventKey='Pink'>Pink (Default)</Dropdown.Item>
+                                <Dropdown.Item eventKey='Red'>Red</Dropdown.Item>
                                 <Dropdown.Item eventKey='Yellow'>Yellow</Dropdown.Item>
                             </SplitButton>
                         </Col>
